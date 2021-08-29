@@ -8,8 +8,8 @@ import com.example.avaliacao2githubapi.repository.RepositoriesGithub
 
 class RepositoryDetailsViewModel : ViewModel() {
 
-    private val _repositoryDetails = MutableLiveData<DescriptionRepository>()
-    val repositoryDetails: LiveData<DescriptionRepository> = _repositoryDetails
+    private val _repositoryDetails = MutableLiveData<List<DescriptionRepository>>()
+    val repositoryDetails: LiveData<List<DescriptionRepository>> = _repositoryDetails
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
@@ -17,7 +17,9 @@ class RepositoryDetailsViewModel : ViewModel() {
     private val repository = RepositoriesGithub()
 
     fun fetchAllPullRequestsFromARepository(fullName: String) {
-        repository.getAllPullRequestsDetails(fullName) { response, error ->
+        val username = fullName.split("/")[0]
+        val repositoryName = fullName.split("/")[1]
+        repository.getAllPullRequestsDetails(username, repositoryName) { response, error ->
 
             if(response != null) {
                 _repositoryDetails.value = response

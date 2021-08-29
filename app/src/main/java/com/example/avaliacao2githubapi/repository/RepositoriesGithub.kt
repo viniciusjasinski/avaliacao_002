@@ -33,15 +33,16 @@ class RepositoriesGithub {
     }
 
     fun getAllPullRequestsDetails(
-        fullNameRepository: String,
-        callReturn: (DescriptionRepository?, String?) -> Unit
+        username: String,
+        repositoryName: String,
+        callReturn: (List<DescriptionRepository>?, String?) -> Unit
     ) {
-        val callback = service.getAllPullsFromRepository(fullNameRepository)
+        val callback = service.getAllPullsFromRepository(username, repositoryName)
 
-        callback.enqueue(object : Callback<DescriptionRepository> {
+        callback.enqueue(object : Callback<List<DescriptionRepository>> {
             override fun onResponse(
-                call: Call<DescriptionRepository>,
-                response: Response<DescriptionRepository>
+                call: Call<List<DescriptionRepository>>,
+                response: Response<List<DescriptionRepository>>
             ) {
                 if (response.body() != null) {
                     callReturn(response.body(), null)
@@ -50,7 +51,7 @@ class RepositoriesGithub {
                 }
             }
 
-            override fun onFailure(call: Call<DescriptionRepository>, t: Throwable) {
+            override fun onFailure(call: Call<List<DescriptionRepository>>, t: Throwable) {
                 callReturn(null, t.message)
             }
 

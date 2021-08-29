@@ -31,8 +31,8 @@ class RepositoryDetailsFragment : Fragment(R.layout.repository_details_fragment)
 
     }
 
-    private val observerPullDetails = Observer<DescriptionRepository> {
-
+    private val observerPullDetails = Observer<List<DescriptionRepository>> {
+        adapter.refresh(it)
     }
 
     private val observerError = Observer<String> {
