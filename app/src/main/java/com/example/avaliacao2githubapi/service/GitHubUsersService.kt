@@ -2,10 +2,10 @@ package com.example.avaliacao2githubapi.service
 
 import com.example.avaliacao2githubapi.model.DataRepositories
 import com.example.avaliacao2githubapi.model.DescriptionRepository
+import com.example.avaliacao2githubapi.model.UserInformation
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface GitHubUsersService {
 
@@ -16,5 +16,9 @@ interface GitHubUsersService {
     fun getAllPullsFromRepository(
         @Path ("username") username: String,
         @Path ("repositoryName") repositoryName: String): Call<List<DescriptionRepository>>
+
+    @GET("/users/{username}")
+    fun getUserInformation(@Path("username") username: String): Call<UserInformation>
+
 
 }
