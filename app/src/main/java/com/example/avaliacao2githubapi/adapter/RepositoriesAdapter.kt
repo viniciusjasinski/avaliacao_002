@@ -4,16 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.avaliacao2githubapi.R
 import com.example.avaliacao2githubapi.databinding.ItemRepositoryBinding
 import com.example.avaliacao2githubapi.model.RepositoriesDetails
 
-class RepositoriesAdapter(): RecyclerView.Adapter<ItemRepositoriesViewHolder>() {
+class RepositoriesAdapter() : RecyclerView.Adapter<ItemRepositoriesViewHolder>() {
 
     private val listOfRepositories: MutableList<RepositoriesDetails> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemRepositoriesViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_repository, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_repository, parent, false)
         return ItemRepositoriesViewHolder(view)
     }
 
@@ -35,7 +37,7 @@ class RepositoriesAdapter(): RecyclerView.Adapter<ItemRepositoriesViewHolder>() 
 
 }
 
-class ItemRepositoriesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+class ItemRepositoriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val binding: ItemRepositoryBinding = ItemRepositoryBinding.bind(itemView)
 
@@ -45,5 +47,6 @@ class ItemRepositoriesViewHolder(itemView: View): RecyclerView.ViewHolder(itemVi
         binding.textViewNumberOfForks.text = details.forks.toString()
         binding.textViewNumberOfStars.text = details.stars.toString()
         binding.textViewUsername.text = details.owner.authorUsername
+        Glide.with(itemView).load(details.owner.authorAvatar).into(binding.imageViewAvatarImage)
     }
 }
