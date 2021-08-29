@@ -9,13 +9,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         changeFragments(AllRepositoriesFragment.newInstance())
     }
 
     fun changeFragments(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, fragment)
-            .commitNow()
+        setContentView(R.layout.main_activity)
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container, fragment)
+                .commitNow()
     }
 }
