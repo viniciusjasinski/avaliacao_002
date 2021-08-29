@@ -13,10 +13,11 @@ import com.example.avaliacao2githubapi.R
 import com.example.avaliacao2githubapi.adapter.PullRequestsDetailsAdapter
 import com.example.avaliacao2githubapi.databinding.RepositoryDetailsFragmentBinding
 import com.example.avaliacao2githubapi.model.DescriptionRepository
+import com.example.avaliacao2githubapi.utils.ClickableItemPullRequests
 import com.example.avaliacao2githubapi.view_model.RepositoryDetailsViewModel
 import com.google.android.material.snackbar.Snackbar
 
-class RepositoryDetailsFragment : Fragment(R.layout.repository_details_fragment) {
+class RepositoryDetailsFragment : Fragment(R.layout.repository_details_fragment), ClickableItemPullRequests {
 
     companion object {
         fun newInstance(repositoryName: String, username: String) : RepositoryDetailsFragment{
@@ -31,10 +32,7 @@ class RepositoryDetailsFragment : Fragment(R.layout.repository_details_fragment)
 
     private lateinit var viewModel: RepositoryDetailsViewModel
     private lateinit var binding: RepositoryDetailsFragmentBinding
-    private var adapter = PullRequestsDetailsAdapter{
-        val openPullRequestBrowser = Intent(Intent.ACTION_VIEW, Uri.parse(it.urlPullRequest))
-        startActivity(openPullRequestBrowser)
-    }
+    private var adapter = PullRequestsDetailsAdapter(this)
 
     private val observerPullDetails = Observer<List<DescriptionRepository>> {
         if(it.isEmpty()){
@@ -67,13 +65,26 @@ class RepositoryDetailsFragment : Fragment(R.layout.repository_details_fragment)
 
         if(!repositoryName.isNullOrEmpty() && !username.isNullOrEmpty()) {
             binding.textViewRepositoryTitle.text = repositoryName
-            viewModel.fetchAllPullRequestsFromARepository(repositoryName!!, username!!)
+            viewModel.fetchAllPullRequestsFromARepository(repositoryName, username)
         }
 
         binding.imageViewArrowBack.setOnClickListener {
             (requireActivity() as? MainActivity)?.changeFragments(AllRepositoriesFragment.newInstance())
         }
 
+
+    }
+
+    override fun onClickList(repo: DescriptionRepository) {
+        val openPullRequestBrowser = Intent(Intent.ACTION_VIEW, Uri.parse(repo.urlPullRequest))
+        startActivity(openPullRequestBrowser)
+    }
+
+    override fun onClickImage(repo: DescriptionRepository) {
+
+        val bottomSheetFrag = UserDetailsFragment.newInstance(repo.userPullRequest.usernameUserPullRequest)
+
+        bottomSheetFrag.show(parentFragmentManager, "dialog_user_description_at_pull_requests")
 
     }
 
