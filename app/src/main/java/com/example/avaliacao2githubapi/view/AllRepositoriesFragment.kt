@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.avaliacao2githubapi.R
 import com.example.avaliacao2githubapi.adapter.RepositoriesAdapter
 import com.example.avaliacao2githubapi.databinding.AllRepositoriesFragmentBinding
-import com.example.avaliacao2githubapi.model.AllRepositories
+import com.example.avaliacao2githubapi.model.DataRepositories
 import com.example.avaliacao2githubapi.view_model.AllRepositoriesViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -21,9 +21,11 @@ class AllRepositoriesFragment : Fragment(R.layout.all_repositories_fragment) {
 
     private lateinit var viewModel: AllRepositoriesViewModel
     private lateinit var binding: AllRepositoriesFragmentBinding
-    private val adapter = RepositoriesAdapter()
+    private val adapter = RepositoriesAdapter(){
 
-    private val observerRepositories = Observer<AllRepositories> {
+    }
+
+    private val observerRepositories = Observer<DataRepositories> {
         adapter.refresh(it.items)
     }
 
@@ -42,7 +44,7 @@ class AllRepositoriesFragment : Fragment(R.layout.all_repositories_fragment) {
 
 //        adapter.refresh(viewModel.allRepositories)
 
-        viewModel.allRepositories.observe(viewLifecycleOwner, observerRepositories)
+        viewModel.dataRepositories.observe(viewLifecycleOwner, observerRepositories)
         viewModel.errorGetRepositories.observe(viewLifecycleOwner, observerError)
 
         viewModel.fetchAllRepositories()

@@ -2,7 +2,7 @@ package com.example.avaliacao2githubapi.model
 
 import com.google.gson.annotations.SerializedName
 
-data class AllRepositories(
+data class DataRepositories(
     @SerializedName("items")
     val items: List<RepositoriesDetails>
 )
@@ -10,6 +10,8 @@ data class AllRepositories(
 data class RepositoriesDetails(
     @SerializedName("name")
     val repositoryName: String,
+    @SerializedName("full_name")
+    val repositoryFullName: String,
     @SerializedName("owner")
     val owner: OwnerDetails,
     @SerializedName("description")

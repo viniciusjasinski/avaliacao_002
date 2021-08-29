@@ -9,7 +9,7 @@ import com.example.avaliacao2githubapi.R
 import com.example.avaliacao2githubapi.databinding.ItemRepositoryBinding
 import com.example.avaliacao2githubapi.model.RepositoriesDetails
 
-class RepositoriesAdapter() : RecyclerView.Adapter<ItemRepositoriesViewHolder>() {
+class RepositoriesAdapter(val onClickRepository: (RepositoriesDetails) -> Unit) : RecyclerView.Adapter<ItemRepositoriesViewHolder>() {
 
     private val listOfRepositories: MutableList<RepositoriesDetails> = mutableListOf()
 
@@ -22,6 +22,9 @@ class RepositoriesAdapter() : RecyclerView.Adapter<ItemRepositoriesViewHolder>()
     override fun onBindViewHolder(holder: ItemRepositoriesViewHolder, position: Int) {
         listOfRepositories[position].apply {
             holder.bind(this)
+            holder.itemView.setOnClickListener {
+                onClickRepository(this)
+            }
         }
     }
 
