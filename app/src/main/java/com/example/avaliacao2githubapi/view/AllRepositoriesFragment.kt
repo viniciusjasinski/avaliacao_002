@@ -11,10 +11,12 @@ import com.example.avaliacao2githubapi.R
 import com.example.avaliacao2githubapi.adapter.RepositoriesAdapter
 import com.example.avaliacao2githubapi.databinding.AllRepositoriesFragmentBinding
 import com.example.avaliacao2githubapi.model.DataRepositories
+import com.example.avaliacao2githubapi.model.RepositoriesDetails
+import com.example.avaliacao2githubapi.utils.ClickableItem
 import com.example.avaliacao2githubapi.view_model.AllRepositoriesViewModel
 import com.google.android.material.snackbar.Snackbar
 
-class AllRepositoriesFragment : Fragment(R.layout.all_repositories_fragment) {
+class AllRepositoriesFragment : Fragment(R.layout.all_repositories_fragment), ClickableItem {
 
     companion object {
         fun newInstance() = AllRepositoriesFragment()
@@ -22,9 +24,7 @@ class AllRepositoriesFragment : Fragment(R.layout.all_repositories_fragment) {
 
     private lateinit var viewModel: AllRepositoriesViewModel
     private lateinit var binding: AllRepositoriesFragmentBinding
-    private val adapter = RepositoriesAdapter{
-        (requireActivity() as? MainActivity)?.changeFragments(RepositoryDetailsFragment.newInstance(it.repositoryName, it.owner.authorUsername))
-    }
+    private val adapter = RepositoriesAdapter(this)
 
     private val observerRepositories = Observer<DataRepositories> {
         adapter.refresh(it.items)
@@ -44,12 +44,21 @@ class AllRepositoriesFragment : Fragment(R.layout.all_repositories_fragment) {
         binding.recyclerViewAllRepositories.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewAllRepositories.adapter = adapter
 
-//        adapter.refresh(viewModel.allRepositories)
-
         viewModel.dataRepositories.observe(viewLifecycleOwner, observerRepositories)
         viewModel.errorGetRepositories.observe(viewLifecycleOwner, observerError)
 
         viewModel.fetchAllRepositories()
+
+    }
+
+    override fun onClickItemList(repo: RepositoriesDetails) {
+        (requireActivity() as? MainActivity)?.changeFragments(RepositoryDetailsFragment.newInstance(repo.repositoryName, repo.owner.authorUsername))
+    }
+
+    override fun onClickImage(repo: RepositoriesDetails) {
+
+        val bottomSheet = UserDetailsFragment.newInstance(repo.owner.authorUsername)
+        bottomSheet.show(parentFragmentManager, "dialog_user_description")
 
     }
 

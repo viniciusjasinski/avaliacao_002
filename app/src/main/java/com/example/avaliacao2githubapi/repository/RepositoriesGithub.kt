@@ -2,6 +2,7 @@ package com.example.avaliacao2githubapi.repository
 
 import com.example.avaliacao2githubapi.model.DataRepositories
 import com.example.avaliacao2githubapi.model.DescriptionRepository
+import com.example.avaliacao2githubapi.model.UserInformation
 import com.example.avaliacao2githubapi.service.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -52,6 +53,30 @@ class RepositoriesGithub {
             }
 
             override fun onFailure(call: Call<List<DescriptionRepository>>, t: Throwable) {
+                callReturn(null, t.message)
+            }
+
+        })
+
+    }
+
+    fun getUserInformation(username: String, callReturn: (UserInformation?, String?) -> Unit) {
+
+        val callback = service.getUserInformation(username)
+
+        callback.enqueue(object  : Callback<UserInformation>{
+            override fun onResponse(
+                call: Call<UserInformation>,
+                response: Response<UserInformation>
+            ) {
+                if (response.body() != null) {
+                    callReturn(response.body(), null)
+                } else {
+                    callReturn(null, "Erro diferente")
+                }
+            }
+
+            override fun onFailure(call: Call<UserInformation>, t: Throwable) {
                 callReturn(null, t.message)
             }
 
