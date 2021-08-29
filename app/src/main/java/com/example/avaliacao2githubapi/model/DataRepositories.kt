@@ -23,7 +23,7 @@ data class RepositoriesDetails(
 
 data class OwnerDetails(
     @SerializedName("login")
-    val authorName: String,
+    val authorUsername: String,
     @SerializedName("avatar_url")
     val authorAvatar: String,
 
