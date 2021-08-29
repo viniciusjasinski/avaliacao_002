@@ -12,6 +12,6 @@ interface GitHubUsersService {
     fun getAllJavaRepositories(): Call<DataRepositories>
 
     @GET("/repos/{fullname}/pulls")
-    fun getAllPullsFromUser(@Path ("fullname") fullname: String): Call<DescriptionRepository>
+    fun getAllPullsFromRepository(@Path ("fullname") fullname: String): Call<DescriptionRepository>
 
 }
