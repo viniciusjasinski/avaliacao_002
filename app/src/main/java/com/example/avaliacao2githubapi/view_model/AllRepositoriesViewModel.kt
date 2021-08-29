@@ -9,10 +9,10 @@ import com.example.avaliacao2githubapi.repository.RepositoriesGithub
 class AllRepositoriesViewModel : ViewModel() {
 
     private val _allRepositories = MutableLiveData<AllRepositories>()
-    private val allRepositories: LiveData<AllRepositories> = _allRepositories
+    val allRepositories: LiveData<AllRepositories> = _allRepositories
 
     private val _errorGetRepositories = MutableLiveData<String>()
-    private val errorGetRepositories: LiveData<String> = _errorGetRepositories
+    val errorGetRepositories: LiveData<String> = _errorGetRepositories
 
     private val repository = RepositoriesGithub()
 
