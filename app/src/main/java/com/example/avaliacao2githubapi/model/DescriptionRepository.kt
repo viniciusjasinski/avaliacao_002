@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class DescriptionRepository(
 
+    @SerializedName("html_url")
+    val urlPullRequest: String,
     @SerializedName("user")
     val userPullRequest: UserPullRequest,
     @SerializedName("title")

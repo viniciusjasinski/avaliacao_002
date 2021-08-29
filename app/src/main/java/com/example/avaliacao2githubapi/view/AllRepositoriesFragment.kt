@@ -22,12 +22,13 @@ class AllRepositoriesFragment : Fragment(R.layout.all_repositories_fragment) {
 
     private lateinit var viewModel: AllRepositoriesViewModel
     private lateinit var binding: AllRepositoriesFragmentBinding
-    private val adapter = RepositoriesAdapter(){
-        (requireActivity() as? MainActivity)?.changeFragments(RepositoryDetailsFragment.newInstance(it.repositoryFullName))
+    private val adapter = RepositoriesAdapter{
+        (requireActivity() as? MainActivity)?.changeFragments(RepositoryDetailsFragment.newInstance(it.repositoryName, it.owner.authorUsername))
     }
 
     private val observerRepositories = Observer<DataRepositories> {
         adapter.refresh(it.items)
+        binding.progressBarLoading.visibility = View.GONE
     }
 
     private val observerError = Observer<String> {

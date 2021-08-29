@@ -10,8 +10,6 @@ data class DataRepositories(
 data class RepositoriesDetails(
     @SerializedName("name")
     val repositoryName: String,
-    @SerializedName("full_name")
-    val repositoryFullName: String,
     @SerializedName("owner")
     val owner: OwnerDetails,
     @SerializedName("description")

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.avaliacao2githubapi.R
+import com.example.avaliacao2githubapi.databinding.ItemPullDetailsBinding
 import com.example.avaliacao2githubapi.databinding.ItemRepositoryBinding
 import com.example.avaliacao2githubapi.model.DescriptionRepository
 
@@ -47,7 +48,7 @@ class PullRequestsDetailsAdapter(val onClickPullRequest: (DescriptionRepository)
 
 class ItemPullRequestsDetailsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    private val binding: ItemRepositoryBinding = ItemRepositoryBinding.bind(itemView)
+    private val binding: ItemPullDetailsBinding = ItemPullDetailsBinding.bind(itemView)
 
     fun bind(descriptionRepository: DescriptionRepository) {
         binding.textViewRepositoryName.text = descriptionRepository.titlePullRequest
