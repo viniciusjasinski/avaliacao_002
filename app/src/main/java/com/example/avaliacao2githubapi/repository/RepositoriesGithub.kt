@@ -1,6 +1,6 @@
 package com.example.avaliacao2githubapi.repository
 
-import com.example.avaliacao2githubapi.model.AllRepositories
+import com.example.avaliacao2githubapi.model.DataRepositories
 import com.example.avaliacao2githubapi.service.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -10,13 +10,13 @@ class RepositoriesGithub {
 
     private val service = RetrofitBuilder.getAllGitHubRepositories()
 
-    fun getAllRepositories(callReturn: (AllRepositories?, String?) -> Unit) {
+    fun getAllRepositories(callReturn: (DataRepositories?, String?) -> Unit) {
         val callback = service.getAllJavaRepositories()
 
-        callback.enqueue(object: Callback<AllRepositories> {
+        callback.enqueue(object: Callback<DataRepositories> {
             override fun onResponse(
-                call: Call<AllRepositories>,
-                response: Response<AllRepositories>
+                call: Call<DataRepositories>,
+                response: Response<DataRepositories>
             ) {
                 if(response.body() != null) {
                     callReturn(response.body(), null)
@@ -25,7 +25,7 @@ class RepositoriesGithub {
                 }
             }
 
-            override fun onFailure(call: Call<AllRepositories>, t: Throwable) {
+            override fun onFailure(call: Call<DataRepositories>, t: Throwable) {
                 callReturn(null, t.message)
             }
         })

@@ -1,6 +1,5 @@
 package com.example.avaliacao2githubapi.service
 
-import com.example.avaliacao2githubapi.model.AllRepositories
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
