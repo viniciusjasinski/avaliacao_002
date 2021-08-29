@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.avaliacao2githubapi.R
 import com.example.avaliacao2githubapi.databinding.ItemRepositoryBinding
-import com.example.avaliacao2githubapi.model.AllRepositories
 import com.example.avaliacao2githubapi.model.RepositoriesDetails
 
 class RepositoriesAdapter(): RecyclerView.Adapter<ItemRepositoriesViewHolder>() {
@@ -27,6 +26,13 @@ class RepositoriesAdapter(): RecyclerView.Adapter<ItemRepositoriesViewHolder>() 
     override fun getItemCount(): Int {
         return listOfRepositories.size
     }
+
+    fun refresh(newList: List<RepositoriesDetails>) {
+        listOfRepositories.clear()
+        listOfRepositories.addAll(newList)
+        notifyDataSetChanged()
+    }
+
 }
 
 class ItemRepositoriesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -34,6 +40,10 @@ class ItemRepositoriesViewHolder(itemView: View): RecyclerView.ViewHolder(itemVi
     private val binding: ItemRepositoryBinding = ItemRepositoryBinding.bind(itemView)
 
     fun bind(details: RepositoriesDetails) {
-
+        binding.textViewRepositoryName.text = details.repositoryName
+        binding.textViewRepositoryDescription.text = details.description
+        binding.textViewNumberOfForks.text = details.forks.toString()
+        binding.textViewNumberOfStars.text = details.stars.toString()
+        binding.textViewUsername.text = details.owner.authorUsername
     }
 }
