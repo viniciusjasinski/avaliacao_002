@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.avaliacao2githubapi.MainActivity
 import com.example.avaliacao2githubapi.R
 import com.example.avaliacao2githubapi.adapter.RepositoriesAdapter
 import com.example.avaliacao2githubapi.databinding.AllRepositoriesFragmentBinding
@@ -22,7 +23,7 @@ class AllRepositoriesFragment : Fragment(R.layout.all_repositories_fragment) {
     private lateinit var viewModel: AllRepositoriesViewModel
     private lateinit var binding: AllRepositoriesFragmentBinding
     private val adapter = RepositoriesAdapter(){
-
+        (requireActivity() as? MainActivity)?.changeFragments(RepositoryDetailsFragment.newInstance(it.repositoryFullName))
     }
 
     private val observerRepositories = Observer<DataRepositories> {
