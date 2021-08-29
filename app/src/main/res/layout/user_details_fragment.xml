@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.UserDetailsFragment">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="50dp"
+            app:cardCornerRadius="75dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageViewAvatarDetailsImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textViewUsernameDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlue"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/cardViewImage"
+            app:layout_constraintStart_toStartOf="@+id/cardViewImage"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewImage"
+            tools:text="Username" />
+
+        <TextView
+            android:id="@+id/textViewNameDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlue"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/cardViewImage"
+            app:layout_constraintStart_toStartOf="@+id/cardViewImage"
+            app:layout_constraintTop_toBottomOf="@+id/textViewUsernameDetails"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/textViewLocationDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/colorBlue"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/cardViewImage"
+            app:layout_constraintStart_toStartOf="@+id/cardViewImage"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNameDetails"
+            tools:text="Location" />
+
+        <TextView
+            android:id="@+id/textViewBioDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:maxLines="10"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/cardViewImage"
+            app:layout_constraintStart_toStartOf="@+id/cardViewImage"
+            app:layout_constraintTop_toBottomOf="@+id/textViewLocationDetails"
+            tools:text="Test Description" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
