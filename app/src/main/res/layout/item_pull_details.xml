@@ -54,6 +54,16 @@
                 tools:text="Username" />
 
             <TextView
+                android:id="@+id/textViewPullRequestDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:layout_marginBottom="@dimen/margin_default"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Date" />
+
+            <TextView
                 android:id="@+id/textViewRepositoryName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

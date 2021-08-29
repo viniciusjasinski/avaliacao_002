@@ -55,9 +55,11 @@ class ItemPullRequestsDetailsViewHolder(itemView: View) : RecyclerView.ViewHolde
     private val binding: ItemPullDetailsBinding = ItemPullDetailsBinding.bind(itemView)
 
     fun bind(descriptionRepository: DescriptionRepository) {
+
         binding.textViewRepositoryName.text = descriptionRepository.titlePullRequest
         binding.textViewRepositoryDescription.text = descriptionRepository.bodyPullRequest
         binding.textViewUsername.text = descriptionRepository.userPullRequest.usernameUserPullRequest
+        binding.textViewPullRequestDate.text = descriptionRepository.PullRequestDate.split("T")[0]
         Glide.with(itemView.context)
             .load(descriptionRepository.userPullRequest.avatarUserPullRequest)
             .into(binding.imageViewAvatarImage)
