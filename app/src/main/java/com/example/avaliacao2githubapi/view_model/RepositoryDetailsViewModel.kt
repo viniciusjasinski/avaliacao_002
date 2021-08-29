@@ -16,9 +16,8 @@ class RepositoryDetailsViewModel : ViewModel() {
 
     private val repository = RepositoriesGithub()
 
-    fun fetchAllPullRequestsFromARepository(fullName: String) {
-        val username = fullName.split("/")[0]
-        val repositoryName = fullName.split("/")[1]
+    fun fetchAllPullRequestsFromARepository(repositoryName: String, username: String) {
+
         repository.getAllPullRequestsDetails(username, repositoryName) { response, error ->
 
             if(response != null) {
