@@ -4,14 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.avaliacao2githubapi.R
 import com.example.avaliacao2githubapi.databinding.ItemRepositoryBinding
 import com.example.avaliacao2githubapi.model.RepositoriesDetails
+import com.example.avaliacao2githubapi.utils.ClickableItem
 
-class RepositoriesAdapter(val onClickRepository: (RepositoriesDetails) -> Unit) : RecyclerView.Adapter<ItemRepositoriesViewHolder>() {
+class RepositoriesAdapter(val onClick: ClickableItem) :
+    RecyclerView.Adapter<ItemRepositoriesViewHolder>() {
 
     private val listOfRepositories: MutableList<RepositoriesDetails> = mutableListOf()
 
@@ -25,10 +26,10 @@ class RepositoriesAdapter(val onClickRepository: (RepositoriesDetails) -> Unit) 
         listOfRepositories[position].apply {
             holder.bind(this)
             holder.itemView.findViewById<ImageView>(R.id.imageViewAvatarImage).setOnClickListener {
-                println("oi")
+                onClick.onClickImage(this)
             }
             holder.itemView.setOnClickListener {
-                onClickRepository(this)
+                onClick.onClickItemList(this)
             }
         }
     }
@@ -56,7 +57,7 @@ class ItemRepositoriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemV
         binding.textViewNumberOfStars.text = details.stars.toString()
         binding.textViewUsername.text = details.owner.authorUsername
         Glide.with(itemView)
-             .load(details.owner.authorAvatar)
-             .into(binding.imageViewAvatarImage)
+            .load(details.owner.authorAvatar)
+            .into(binding.imageViewAvatarImage)
     }
 }

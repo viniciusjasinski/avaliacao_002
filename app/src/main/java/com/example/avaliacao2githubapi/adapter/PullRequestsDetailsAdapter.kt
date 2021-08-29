@@ -3,14 +3,15 @@ package com.example.avaliacao2githubapi.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.avaliacao2githubapi.R
 import com.example.avaliacao2githubapi.databinding.ItemPullDetailsBinding
-import com.example.avaliacao2githubapi.databinding.ItemRepositoryBinding
 import com.example.avaliacao2githubapi.model.DescriptionRepository
+import com.example.avaliacao2githubapi.utils.ClickableItemPullRequests
 
-class PullRequestsDetailsAdapter(val onClickPullRequest: (DescriptionRepository) -> Unit) :
+class PullRequestsDetailsAdapter(val onClick: ClickableItemPullRequests) :
     RecyclerView.Adapter<ItemPullRequestsDetailsViewHolder>() {
 
     private val listOfPullRequests: MutableList<DescriptionRepository> = mutableListOf()
@@ -27,8 +28,11 @@ class PullRequestsDetailsAdapter(val onClickPullRequest: (DescriptionRepository)
     override fun onBindViewHolder(holder: ItemPullRequestsDetailsViewHolder, position: Int) {
         listOfPullRequests[position].apply {
             holder.bind(this)
+            holder.itemView.findViewById<ImageView>(R.id.imageViewAvatarImage).setOnClickListener {
+                onClick.onClickImage(this)
+            }
             holder.itemView.setOnClickListener {
-                onClickPullRequest(this)
+                onClick.onClickList(this)
             }
         }
     }
