@@ -28,7 +28,7 @@ class AllRepositoriesFragment : Fragment(R.layout.all_repositories_fragment), Cl
 
     private val observerRepositories = Observer<DataRepositories> {
         adapter.refresh(it.items)
-        binding.progressBarLoading.visibility = View.GONE
+        binding.animationViewGithub.visibility = View.INVISIBLE
     }
 
     private val observerError = Observer<String> {

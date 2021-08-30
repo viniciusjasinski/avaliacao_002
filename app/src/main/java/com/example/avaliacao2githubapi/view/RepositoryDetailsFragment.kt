@@ -40,7 +40,7 @@ class RepositoryDetailsFragment : Fragment(R.layout.repository_details_fragment)
         } else {
             adapter.refresh(it)
         }
-        binding.progressBarLoading.visibility = View.GONE
+        binding.animationViewGithub.visibility = View.INVISIBLE
     }
 
     private val observerError = Observer<String> {
