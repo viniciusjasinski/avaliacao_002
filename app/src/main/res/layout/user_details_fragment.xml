@@ -70,10 +70,10 @@
         <TextView
             android:id="@+id/textViewBioDetails"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:layout_marginTop="@dimen/margin_default"
             android:layout_marginBottom="24dp"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:maxLines="10"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/cardViewImage"
